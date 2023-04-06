@@ -14,7 +14,16 @@ function MovieList() {
     }, []);
 
     // Takes you to the details page on movie picture click
-    const toDetails = () => {
+    const toDetails = (id) => {
+        console.log('this is id', id);
+
+        // this dispatch will go to a saga which will
+        // fetch the movie details by the movie id
+        dispatch({
+            type: 'FETCH_DETAILS_SAGA',
+            payload: id
+        })
+
         history.push('/details')
     }
 
@@ -26,7 +35,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title} onClick={toDetails} />
+                            <img src={movie.poster} alt={movie.title} onClick={() => toDetails(movie.id)} />
                         </div>
                     );
                 })}
