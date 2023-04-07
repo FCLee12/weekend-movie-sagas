@@ -47,12 +47,10 @@ This project is an app built utilizing HTML, CSS, Javascript, Node.js, Express, 
 
 ## Usage
 <ol>
-    <li>Upon loading, you should be greeted by the first feedback prompt and an input field for you to enter in your rating</li>
-    <li>Once you've entered your rating, you can click the 'Next' button bringing you to the next page</li>
-    <li>Continue to enter your ratings into the input fields based on the prompts on the consecutive pages</li>
-    <li>If you would like to return to a previous page, take note of the 'Previous' button which will return you to the previous page</li>
-    <li>Once you have reached the Review page, where all your ratings and your comments are displayed, by clicking the Submit button, your feedback information will be stored in the database</li>
-    <li>Congratualations, your feedback has been recorded, if you would like to record more, click on the 'Leave New Feedback' button which will return you to the start of the questions</li>
+    <li>Upon loading, if you've imported the mock data, you should be greeted by a list of movies.</li>
+    <li>If you want to view more details about a movie, simply click on the image.</li>
+    <li>Upon click, you will be brought to a details page about the movie.</li>
+    <li>If you want to return to the list of movies, click the "Back to List" button, which will return you to the list of movies.</li>
 </ol>
 
 ## Built With
@@ -62,6 +60,7 @@ This project is an app built utilizing HTML, CSS, Javascript, Node.js, Express, 
     <li>JavaScript</li>
     <li>React</li>
     <li>Redux</li>
+    <li>Redux Sagas</li>
     <li>Node.js</li>
     <li>Express</li>
     <li>Postgres</li>
