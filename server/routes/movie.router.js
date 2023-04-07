@@ -82,6 +82,8 @@ router.get('/details/:id', (req, res) => {
         genres: genres
       };
 
+      console.log('this is movieObj', movieObj);
+
       res.send(movieObj);
     })
     .catch(err => {
