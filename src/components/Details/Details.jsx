@@ -17,11 +17,14 @@ function Details() {
             <h1>{details.title}</h1>
             <img src={details.poster} />
             <h3>Genres</h3>
-            <ul>
-                {details.genres.map((genre, i) => (
-                    <li key={i}>{genre}</li>
-                ))}
-            </ul>
+            {!!details.genres ?
+                <ul>
+                    {details.genres.map((genre, i) => (
+                        <li key={i}>{genre}</li>
+                    ))}
+                </ul> :
+                <h2>Loading</h2>
+            }
             <h3>Summary</h3>
             <p>{details.description}</p>
             <button onClick={toList}>Back to List</button>
