@@ -10,6 +10,8 @@ function Details() {
         history.push('/');
     }
 
+    console.log('this is details', details);
+
     return(
         <>
             <h1>{details.title}</h1>

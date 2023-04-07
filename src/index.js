@@ -36,7 +36,7 @@ function* fetchAllMovies() {
 function* fetchMovieDetails(action) {
     try {
         const movieDetails = yield axios.get(`/api/movie/details/${action.payload}`);
-        console.log('movie details', movieDetails.data);
+        // console.log('movie details', movieDetails.data);
         // movieDetails.data[0] gives you an object with the movie details as properties
 
         yield put({
