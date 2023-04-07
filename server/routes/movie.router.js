@@ -55,11 +55,32 @@ router.post('/', (req, res) => {
 })
 
 // This GET is to retrieve the Movie Details from the DB
+// router.get('/details/:id', (req, res) => {
+//   console.log('this is req.params', req.params.id);
+//   const query = `SELECT * FROM movies WHERE id=$1`;
+//   pool.query(query, [req.params.id])
+//     .then( result => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => {
+//       console.log('ERROR: Get movie details', err);
+//       res.sendStatus(500)
+//     })
+
+// });
+
 router.get('/details/:id', (req, res) => {
   console.log('this is req.params', req.params.id);
-  const query = `SELECT * FROM movies WHERE id=$1`;
+  const query = `SELECT "movies".id, "movies".title, "genres".name, "movies".description, "movies".poster
+  FROM "movies_genres"
+  JOIN "movies" ON "movies_genres".movie_id = "movies".id
+  JOIN "genres" ON "movies_genres".genre_id = "genres".id
+  WHERE "movies".id = $1
+  GROUP BY "movies".id, "genres".name, "movies".title
+  ORDER BY "movies".title;`;
   pool.query(query, [req.params.id])
     .then( result => {
+      console.log(result.rows);
       res.send(result.rows);
     })
     .catch(err => {

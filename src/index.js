@@ -38,9 +38,24 @@ function* fetchMovieDetails(action) {
         const movieDetails = yield axios.get(`/api/movie/details/${action.payload}`);
         console.log('movie details', movieDetails.data[0]);
         // movieDetails.data[0] gives you an object with the movie details as properties
+        let genres = [];
+
+        for (let instance of movieDetails.data) {
+            genres.push(instance.name);
+        }
+        console.log('this is genres:', genres);
+
+        let movieObj = {
+            id: movieDetails.data[0].id,
+            title: movieDetails.data[0].title,
+            description: movieDetails.data[0].description,
+            poster: movieDetails.data[0].poster,
+            genres: genres
+        };
+
         yield put({
             type: 'SHOW_DETAILS',
-            payload: movieDetails.data[0]
+            payload: movieObj
         })
 
     } catch(error) {
