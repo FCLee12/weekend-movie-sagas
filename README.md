@@ -32,8 +32,8 @@ This project is an app built utilizing HTML, CSS, Javascript, Node.js, Express, 
     <li>Hit enter, the repo will be downloaded into your current working directory</li>
     <li>The repo should now exist in your local machine</li>
     <li>cd into the repo</li>
-    <li>
-        <ol>Run the following commands in your terminal, waiting each time for installation to complete before running the next command:
+    <li>Run the following commands in your terminal, waiting each time for installation to complete before running the next command:
+        <ol>
             <li>npm install</li>
         </ol>
     </li>
