@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// This GET is to retrieve movies from the DB
 router.get('/', (req, res) => {
 
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
@@ -52,5 +53,45 @@ router.post('/', (req, res) => {
     res.sendStatus(500)
   })
 })
+
+router.get('/details/:id', (req, res) => {
+  console.log('this is req.params', req.params.id);
+  const query = `SELECT "movies".id, "movies".title, "genres".name, "movies".description, "movies".poster
+  FROM "movies_genres"
+  JOIN "movies" ON "movies_genres".movie_id = "movies".id
+  JOIN "genres" ON "movies_genres".genre_id = "genres".id
+  WHERE "movies".id = $1
+  GROUP BY "movies".id, "genres".name, "movies".title
+  ORDER BY "movies".title;`;
+  pool.query(query, [req.params.id])
+    .then( result => {
+      // console.log(result.rows);
+      let genres = [];
+
+      for (let instance of result.rows) {
+        genres.push(instance.name);
+      }
+
+      console.log('this is genres:', genres);
+
+      let movieObj = {
+        id: result.rows[0].id,
+        title: result.rows[0].title,
+        description: result.rows[0].description,
+        poster: result.rows[0].poster,
+        genres: genres
+      };
+
+      console.log('this is movieObj', movieObj);
+
+      res.send(movieObj);
+    })
+    .catch(err => {
+      console.log('ERROR: Get movie details', err);
+      res.sendStatus(500)
+    })
+
+});
+
 
 module.exports = router;
