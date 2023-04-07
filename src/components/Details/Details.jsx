@@ -1,8 +1,14 @@
+import { useSelector } from "react-redux";
+
 function Details() {
+
+    const details = useSelector(store => store.details)
 
     return(
         <>
-            <h1>Welcome to the Details Page!</h1>
+            <h1>{details.title}</h1>
+            <img src={details.poster} />
+            <p>{details.description}</p>
         </>
     )
 }
